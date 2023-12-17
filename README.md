@@ -18,12 +18,8 @@ Follow the steps below to set up and run the project locally.
    git clone https://github.com/your-username/stock-analysis-web-app.git
    cd stock-analysis-web-app
    ```
-2. Install dependencies:
 
-   ```bash
-   npm install
-   ```
-3. Create a configuration file:
+2. Create a configuration file:
 
    Create a file named `config.js` in the `src/config` directory with the following content:
 
