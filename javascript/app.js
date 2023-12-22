@@ -1,5 +1,5 @@
-// import config from '../Config/config';
-const apiKey =  '8292bc0f34msh9c332479f6a0823p14a994jsnb22418fc602f'
+import config from '../config/config';
+const apiKey =  config.apiKey
 
 async function searchStock() {
     const companyInput = document.getElementById('companyInput').value;
@@ -39,19 +39,19 @@ async function searchStock() {
 
             const companyInfoResponse = await fetch(companyInfoUrl, companyInfoOptions);
             const companyInfoResult = await companyInfoResponse.json();
-            console.log(companyInfoResult["5-year average dividend yield"]);
+            // console.log(companyInfoResult["5-year average dividend yield"]);
 
             // Display the relevant information
-            const resultDiv = document.getElementById('result');
+            const resultDiv = await document.getElementById('result');
             resultDiv.innerHTML = `
             <h2>${companyInfoResult.shortname}</h2>Z
             <p>Symbol: ${companySymbol}</p>
             <p>Sector: ${companyInfoResult.sector}</p>
             <p>Market Cap: ${companyInfoResult.marketCap}</p>
-            <p>5-year Average Dividend Yield: ${companyInfoResult["5-year average dividend yield"].Value}</p>
+            <p>5-year Average Dividend Yield: ${companyInfoResult["5-year average dividend yield "]["Value"]}</p>
             <!-- Add more information as needed -->
         `;
-        console.log(companyInfoResult["5-year average dividend yield"]);
+        // console.log(companyInfoResult["5-year average dividend yield"]);
         } else {
             throw new Error('No quotes found for the provided company');
         }

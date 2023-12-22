@@ -1,5 +1,5 @@
 const config = {
-    apiKey: '8292bc0f34msh9c332479f6a0823p14a994jsnb22418fc602f',
+    apiKey: process.env.API_KEY,
     // baseUrl: 
     // Add more variables as needed
 };
