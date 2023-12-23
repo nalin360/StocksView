@@ -20,7 +20,7 @@ async function searchStock() {
         const autoCompleteResponse = await fetch(autoCompleteUrl, autoCompleteOptions);
         const autoCompleteResult = await autoCompleteResponse.json();
 
-        console.log(autoCompleteResponse);
+        // console.log(autoCompleteResult);
 
         const stockAnalysisURl = 'https://stock-analysis.p.rapidapi.com/api/v1/resources';
 
@@ -40,12 +40,12 @@ async function searchStock() {
 
             const companyInfoResponse = await fetch(companyInfoUrl, companyInfoOptions);
             const companyInfoResult = await companyInfoResponse.json();
-            console.log(companyInfoResult);
+            // console.log(companyInfoResult);
 
             // Display the relevant information
             const resultDiv = await document.getElementById('result');
             resultDiv.innerHTML = `
-            <h2>${companyInfoResult.shortname}</h2>Z
+            <h2>${autoCompleteResult.quotes[0].longname}</h2>
             <ul>
             <p>Symbol: ${companySymbol}</p>
             <p>Market Cap: ${companyInfoResult["Market cap (intra-day)"]["Value"]}</p>
