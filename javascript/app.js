@@ -1,5 +1,6 @@
-import config from '../config/config';
-const apiKey =  config.apiKey
+// import config from '../config/config.js';
+
+const apiKey = '8292bc0f34msh9c332479f6a0823p14a994jsnb22418fc602f'
 
 async function searchStock() {
     const companyInput = document.getElementById('companyInput').value;
@@ -39,19 +40,30 @@ async function searchStock() {
 
             const companyInfoResponse = await fetch(companyInfoUrl, companyInfoOptions);
             const companyInfoResult = await companyInfoResponse.json();
-            // console.log(companyInfoResult["5-year average dividend yield"]);
+            console.log(companyInfoResult);
 
             // Display the relevant information
             const resultDiv = await document.getElementById('result');
             resultDiv.innerHTML = `
             <h2>${companyInfoResult.shortname}</h2>Z
+            <ul>
             <p>Symbol: ${companySymbol}</p>
-            <p>Sector: ${companyInfoResult.sector}</p>
-            <p>Market Cap: ${companyInfoResult.marketCap}</p>
-            <p>5-year Average Dividend Yield: ${companyInfoResult["5-year average dividend yield "]["Value"]}</p>
+            <p>Market Cap: ${companyInfoResult["Market cap (intra-day)"]["Value"]}</p>
+            <p>5-year Average Dividend Yield: 
+            ${companyInfoResult["5-year average dividend yield "]["Value"]}</p>
+            <p>PEG Ratio (5 yr expected): 
+            ${companyInfoResult["PEG Ratio (5 yr expected)"]["Value"]}</p>
+            <p>Fiscal year ends: 
+            ${companyInfoResult["Fiscal year ends"]["Value"]}</p>
+            <p>Forward P/E: 
+            ${companyInfoResult["Forward P/E"]["Value"]}</p>
+            <p>Total debt/equity (mrq): 
+            ${companyInfoResult["Total debt/equity (mrq)"]["Value"]}</p>
+            </ul>
+            
             <!-- Add more information as needed -->
         `;
-        // console.log(companyInfoResult["5-year average dividend yield"]);
+            // console.log(companyInfoResult["5-year average dividend yield"]);
         } else {
             throw new Error('No quotes found for the provided company');
         }
